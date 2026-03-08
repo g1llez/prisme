@@ -1,0 +1,14 @@
+# Port 3080: used by nginx-proxy to proxy to Prisme (e.g. prisme.sarius.ca)
+# Ensure no other service uses 3080: ss -tlnp | grep 3080
+#
+# data/ and pages/ are mounted: edit config.json or HTML files without rebuild.
+services:
+  prisme:
+    build: .
+    ports:
+      - "3080:80"
+    volumes:
+      - ./data/config.json:/usr/share/nginx/html/config.json
+      - ./data/context.json:/usr/share/nginx/html/context.json
+      - ./pages:/usr/share/nginx/html/pages
+    restart: unless-stopped

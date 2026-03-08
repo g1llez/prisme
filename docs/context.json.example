@@ -1,0 +1,20 @@
+{
+  "conversation_id": "conv_20250308_1523",
+  "timestamp": "2025-03-08T15:23:45Z",
+  "transition_urgency": 4,
+  
+  "summary": {
+    "brief": "Discussing Bitcoin project - S21 firmware installation",
+    "primary_focus": "bitcoin_s21_firmware"
+  },
+  
+  "tags": [
+    "bitcoin",
+    "mining",
+    "firmware",
+    "s21",
+    "antminer",
+    "documentation",
+    "hardware"
+  ]
+}

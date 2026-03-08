@@ -1,0 +1,18 @@
+# Local data (links, IDs) — do not push to GitHub
+data/config.json
+data/context.json
+
+# Dependencies & build
+node_modules/
+dist/
+
+# Env / secrets
+.env
+.env.local
+*.local
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+*.log

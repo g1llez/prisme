@@ -1,0 +1,58 @@
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app--loading,
+.app--error {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+}
+
+.app--error code {
+  background: var(--prisme-surface);
+  padding: 0.2em 0.5em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.app-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--prisme-border);
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.app-header__sub {
+  font-size: 0.875rem;
+  color: var(--prisme-muted);
+}
+
+.app-main {
+  flex: 1;
+  padding: 1.5rem;
+  overflow: auto;
+}
+
+.app-main__empty {
+  color: var(--prisme-muted);
+  margin: 2rem 0;
+}
+
+.app-main__empty code {
+  background: var(--prisme-surface);
+  padding: 0.2em 0.5em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mempool — Fees</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; min-height: 100%; background: #1a1a1f; color: #e8e8ed; font-family: system-ui, sans-serif; }
+    .container { padding: 1rem; max-width: 480px; margin: 0 auto; }
+    h1 { font-size: 1rem; font-weight: 600; color: #8888a0; margin: 0 0 1rem 0; }
+    .fees { display: grid; gap: 0.5rem; }
+    .fee-row { display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 0.75rem; background: #25252d; border-radius: 6px; }
+    .fee-label { font-size: 0.875rem; }
+    .fee-value { font-size: 1rem; font-weight: 600; color: #6366f1; }
+    .fee-value span { font-size: 0.75rem; font-weight: 400; color: #8888a0; margin-left: 0.25rem; }
+    .updated { font-size: 0.75rem; color: #8888a0; margin-top: 1rem; }
+    .error { color: #f87171; padding: 1rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Recommended fees (mempool.space)</h1>
+    <div id="fees" class="fees"></div>
+    <p id="updated" class="updated"></p>
+    <p id="error" class="error" style="display:none"></p>
+  </div>
+  <script>
+    const labels = {
+      fastestFee: 'Next block',
+      halfHourFee: '~30 min',
+      hourFee: '~1 h',
+      economyFee: 'Economy',
+      minimumFee: 'Minimum'
+    };
+    function fmt(n) { return n != null ? n.toLocaleString('en') : '—'; }
+    function load() {
+      fetch('https://mempool.space/api/v1/fees/recommended')
+        .then(r => r.json())
+        .then(data => {
+          document.getElementById('error').style.display = 'none';
+          const el = document.getElementById('fees');
+          el.innerHTML = Object.entries(labels).map(([key, label]) =>
+            `<div class="fee-row"><span class="fee-label">${label}</span><span class="fee-value">${fmt(data[key])}<span>sat/vB</span></span></div>`
+          ).join('');
+          document.getElementById('updated').textContent = 'Updated: ' + new Date().toLocaleTimeString('en');
+        })
+        .catch(err => {
+          document.getElementById('error').style.display = 'block';
+          document.getElementById('error').textContent = 'Failed to load fees: ' + err.message;
+        });
+    }
+    load();
+    setInterval(load, 60000);
+  </script>
+</body>
+</html>

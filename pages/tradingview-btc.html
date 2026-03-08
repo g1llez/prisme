@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bitcoin — TradingView</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; height: 100%; background: #1a1a1f; }
+    .tradingview-widget-container { height: 100%; width: 100%; }
+    .tradingview-widget-container__widget { height: 100% !important; width: 100% !important; }
+  </style>
+</head>
+<body>
+  <div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+    {
+      "autosize": true,
+      "symbol": "BINANCE:BTCUSDT",
+      "interval": "D",
+      "timezone": "Etc/UTC",
+      "theme": "dark",
+      "style": "1",
+      "locale": "en",
+      "allow_symbol_change": true,
+      "calendar": false,
+      "support_host": "https://www.tradingview.com"
+    }
+    </script>
+  </div>
+</body>
+</html>

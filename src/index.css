@@ -1,0 +1,24 @@
+:root {
+  --prisme-bg: #0f0f12;
+  --prisme-surface: #1a1a1f;
+  --prisme-border: #2a2a32;
+  --prisme-text: #e8e8ed;
+  --prisme-muted: #8888a0;
+  --prisme-accent: #6366f1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, sans-serif;
+  background: var(--prisme-bg);
+  color: var(--prisme-text);
+}
+
+#root {
+  min-height: 100vh;
+}
