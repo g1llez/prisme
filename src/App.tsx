@@ -1,18 +1,11 @@
 import { useEffect, useLayoutEffect, useState } from 'react'
 import { Routes, Route, Navigate, useParams } from 'react-router-dom'
-import type { PrismeConfig, PrismeContext, Widget } from './types/config'
+import type { PrismeConfig, PrismeContext } from './types/config'
 import { WidgetGrid } from './components/WidgetGrid'
+import { filterWidgetsByContext } from './utils/filterWidgets'
 import './App.css'
 
 type DashboardMode = 'static' | 'dynamic' | 'focus'
-
-/** Returns widgets that have at least one tag in common with the context. */
-function filterWidgetsByContext(widgets: Widget[], contextTags: string[]): Widget[] {
-  const ctxSet = new Set(contextTags.map((t) => t.toLowerCase()))
-  return widgets.filter((w) =>
-    w.tags.some((t) => ctxSet.has(t.toLowerCase()))
-  )
-}
 
 function DashboardView() {
   const { mode } = useParams<{ mode: string }>()

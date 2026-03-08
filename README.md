@@ -17,3 +17,5 @@ docker compose up -d --build
 Access: http://localhost:3080 (or via reverse proxy, e.g. prisme.sarius.ca).
 
 Routes: `/` redirects to `/d/static`; `/d/static`, `/d/dynamic`, `/d/focus`.
+
+**Tests:** `npm run test` (unit tests with Vitest). CI runs on push/PR to `main`.
