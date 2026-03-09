@@ -6,9 +6,15 @@
 
 .app--loading,
 .app--error {
+  text-align: center;
+}
+
+.app__message {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
   gap: 1rem;
 }
 
@@ -25,6 +31,36 @@
   display: flex;
   align-items: baseline;
   gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.app-header__lang {
+  margin-left: auto;
+  display: flex;
+  gap: 0.25rem;
+}
+
+.app-header__lang-btn {
+  padding: 0.25em 0.5em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  background: transparent;
+  border: 1px solid var(--prisme-border);
+  border-radius: 4px;
+  color: var(--prisme-muted);
+  cursor: pointer;
+}
+
+.app-header__lang-btn:hover {
+  color: var(--prisme-fg);
+  border-color: var(--prisme-fg);
+}
+
+.app-header__lang-btn.is-active {
+  background: var(--prisme-accent, #333);
+  border-color: var(--prisme-accent, #333);
+  color: #fff;
 }
 
 .app-header h1 {

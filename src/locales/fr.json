@@ -1,0 +1,24 @@
+{
+  "app": {
+    "title": "Prisme"
+  },
+  "dashboard": {
+    "static": "Tableau de bord statique",
+    "dynamic": "Tableau de bord dynamique",
+    "focus": "Focus"
+  },
+  "error": {
+    "configFailed": "Échec du chargement de la configuration : {{message}}",
+    "configHint": "Créez data/config.json à partir de docs/config.json.example (voir data/README.md)."
+  },
+  "loading": {
+    "config": "Chargement…",
+    "context": "Chargement du contexte…"
+  },
+  "empty": {
+    "noContext": "Aucun contexte. Ajoutez un context.json dans data/."
+  },
+  "widget": {
+    "label": "Widget :"
+  }
+}

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import type { Widget as WidgetType } from '../types/config'
 import './Widget.css'
 
@@ -6,6 +7,7 @@ interface WidgetProps {
 }
 
 export function Widget({ widget }: WidgetProps) {
+  const { t } = useTranslation()
   const isPlaceholder =
     !widget.url || widget.url.includes('...') || widget.url.includes('/document/d/...')
 
@@ -25,7 +27,7 @@ export function Widget({ widget }: WidgetProps) {
           />
         ) : (
           <div className="widget__placeholder">
-            <span>Widget: {widget.name}</span>
+            <span>{t('widget.label')} {widget.name}</span>
             <span className="widget__placeholder-url">{widget.url || '—'}</span>
           </div>
         )}

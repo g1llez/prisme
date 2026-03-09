@@ -3,3 +3,5 @@ dist
 .git
 *.md
 docs
+!docs/config.json.example
+!docs/context.json.example

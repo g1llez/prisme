@@ -1,0 +1,24 @@
+{
+  "app": {
+    "title": "Prisme"
+  },
+  "dashboard": {
+    "static": "Static dashboard",
+    "dynamic": "Dynamic dashboard",
+    "focus": "Focus"
+  },
+  "error": {
+    "configFailed": "Failed to load configuration: {{message}}",
+    "configHint": "Create data/config.json from docs/config.json.example (see data/README.md)."
+  },
+  "loading": {
+    "config": "Loading…",
+    "context": "Loading context…"
+  },
+  "empty": {
+    "noContext": "No context. Add a context.json in data/."
+  },
+  "widget": {
+    "label": "Widget:"
+  }
+}

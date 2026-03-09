@@ -1,29 +1,34 @@
 import { useEffect, useLayoutEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Routes, Route, Navigate, useParams } from 'react-router-dom'
 import type { PrismeConfig, PrismeContext } from './types/config'
 import { WidgetGrid } from './components/WidgetGrid'
 import { filterWidgetsByContext } from './utils/filterWidgets'
+import { STORAGE_KEY } from './i18n'
 import './App.css'
 
 type DashboardMode = 'static' | 'dynamic' | 'focus'
 
 function DashboardView() {
+  const { t, i18n } = useTranslation()
   const { mode } = useParams<{ mode: string }>()
   const dashboardMode: DashboardMode =
     mode === 'static' || mode === 'dynamic' || mode === 'focus' ? mode : 'static'
 
-  const titleByMode: Record<DashboardMode, string> = {
-    static: 'Static dashboard',
-    dynamic: 'Dynamic dashboard',
-    focus: 'Focus',
+  const titleKeyByMode: Record<DashboardMode, string> = {
+    static: 'dashboard.static',
+    dynamic: 'dashboard.dynamic',
+    focus: 'dashboard.focus',
   }
   useLayoutEffect(() => {
-    const title = titleByMode[dashboardMode]
-    document.title = title ? `Prisme — ${title}` : 'Prisme'
+    document.documentElement.lang = i18n.language
+    const title = t(titleKeyByMode[dashboardMode])
+    const appTitle = t('app.title')
+    document.title = title ? `${appTitle} — ${title}` : appTitle
     return () => {
-      document.title = 'Prisme'
+      document.title = t('app.title')
     }
-  }, [dashboardMode])
+  }, [dashboardMode, i18n.language, t])
 
   const [config, setConfig] = useState<PrismeConfig | null>(null)
   const [context, setContext] = useState<PrismeContext | null | undefined>(undefined)
@@ -54,12 +59,43 @@ function DashboardView() {
     return () => clearInterval(id)
   }, [dashboardMode, config?.display_config?.context_poll_interval_seconds])
 
+  const setLanguage = (lng: 'en' | 'fr') => {
+    i18n.changeLanguage(lng)
+    localStorage.setItem(STORAGE_KEY, lng)
+  }
+
+  const langSwitcher = (
+    <nav className="app-header__lang" aria-label="Language">
+      <button
+        type="button"
+        className={'app-header__lang-btn' + (i18n.language === 'en' ? ' is-active' : '')}
+        onClick={() => setLanguage('en')}
+        aria-pressed={i18n.language === 'en'}
+      >
+        EN
+      </button>
+      <button
+        type="button"
+        className={'app-header__lang-btn' + (i18n.language === 'fr' ? ' is-active' : '')}
+        onClick={() => setLanguage('fr')}
+        aria-pressed={i18n.language === 'fr'}
+      >
+        FR
+      </button>
+    </nav>
+  )
+
   if (error) {
     return (
       <div className="app app--error">
-        <h1>Prisme</h1>
-        <p>Failed to load configuration: {error}</p>
-        <p>Create <code>data/config.json</code> from <code>docs/config.json.example</code> (see <code>data/README.md</code>).</p>
+        <header className="app-header">
+          <h1>{t('app.title')}</h1>
+          {langSwitcher}
+        </header>
+        <div className="app__message">
+          <p>{t('error.configFailed', { message: error })}</p>
+          <p>{t('error.configHint')}</p>
+        </div>
       </div>
     )
   }
@@ -67,21 +103,35 @@ function DashboardView() {
   if (!config) {
     return (
       <div className="app app--loading">
-        <h1>Prisme</h1>
-        <p>Loading…</p>
+        <header className="app-header">
+          <h1>{t('app.title')}</h1>
+          {langSwitcher}
+        </header>
+        <div className="app__message">
+          <p>{t('loading.config')}</p>
+        </div>
       </div>
     )
   }
 
-  const labels = titleByMode
+  const labels: Record<DashboardMode, string> = {
+    static: t('dashboard.static'),
+    dynamic: t('dashboard.dynamic'),
+    focus: t('dashboard.focus'),
+  }
 
   let widgets = config.widgets
   if (dashboardMode === 'dynamic') {
     if (context === undefined) {
       return (
         <div className="app app--loading">
-          <h1>Prisme</h1>
-          <p>Loading context…</p>
+          <header className="app-header">
+            <h1>{t('app.title')}</h1>
+            {langSwitcher}
+          </header>
+          <div className="app__message">
+            <p>{t('loading.context')}</p>
+          </div>
         </div>
       )
     }
@@ -95,12 +145,13 @@ function DashboardView() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>Prisme</h1>
+        <h1>{t('app.title')}</h1>
         <span className="app-header__sub">{labels[dashboardMode]}</span>
+        {langSwitcher}
       </header>
       <main className="app-main">
         {dashboardMode === 'dynamic' && context === null ? (
-          <p className="app-main__empty">No context. Add a <code>context.json</code> in <code>data/</code>.</p>
+          <p className="app-main__empty">{t('empty.noContext')}</p>
         ) : (
           <WidgetGrid widgets={widgets} />
         )}
