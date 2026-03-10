@@ -25,26 +25,21 @@ OpenClaw conversation → `context.json` → Prisme reads → Score widgets → 
 
 **Config: `config.json`** (e.g. `docs/config.json.example`) — Prisme configuration
 
-- List of available widgets with their tags and `screen` (permanent / dynamic)
+- List of available widgets with their tags
 - Scoring rules (weights, bonuses, multipliers)
 - Display config (thresholds, limits, `focus_score_threshold`)
 
 ## Scoring system
 
-Each widget gets a score (0–100) based on:
-
-- **Base score**: widget’s starting score
-- **Tag matching**: +15 per matching tag
-- **Primary focus**: +25 if the widget matches the primary focus
-- **Urgency multiplier**: ×1.0 to ×2.0 depending on urgency
-
-Only widgets with score ≥ 60 are shown.
+Score is calculated from context (e.g. tag matching, primary focus, urgency), not from widget type.
+Score is computed elsewhere; only widgets above the display threshold are shown.
 
 ## Display — Three dashboards
 
 1. **Permanent**: Widgets always visible (e.g. calendar, global monitoring).
 2. **Dynamic**: Widgets that appear or disappear based on context (score ≥ threshold).
-3. **Focus**: Widget(s) with score ≥ 85 highlighted (larger, centred) — dedicated third screen.
+3. **Focus**: Widget(s) with score ≥ 85 highlighted (larger, centred) — dedicated third screen.  
+Which widgets appear on which screen is determined elsewhere (not in config).
 
 **Transitions** (when the dynamic dashboard is in place):
 
@@ -89,7 +84,7 @@ Prisme displays:
 
 - **Focus**: S21 Firmware doc (score ≥ 85)
 - **Dynamic**: Bitcoin Price Chart, Grafana BTC Monitoring, Mempool (score ≥ 60)
-- **Permanent**: widgets with `screen: "permanent"` (e.g. Calendar, monitoring)
+- **Permanent**: e.g. Calendar, monitoring (selection done elsewhere)
 
 ## POC goals
 

@@ -6,9 +6,7 @@
       "type": "iframe",
       "category": "analytics",
       "url": "https://www.tradingview.com/embed/...",
-      "tags": ["bitcoin", "crypto", "price", "trading"],
-      "base_score": 50,
-      "screen": "dynamic"
+      "tags": ["bitcoin", "crypto", "price", "trading"]
     },
     {
       "id": "doc_s21_firmware",
@@ -16,9 +14,7 @@
       "type": "iframe",
       "category": "documentation",
       "url": "https://docs.google.com/document/d/.../preview",
-      "tags": ["s21", "antminer", "firmware", "documentation", "hardware"],
-      "base_score": 40,
-      "screen": "dynamic"
+      "tags": ["s21", "antminer", "firmware", "documentation", "hardware"]
     },
     {
       "id": "grafana_btc_monitoring",
@@ -26,9 +22,7 @@
       "type": "iframe",
       "category": "monitoring",
       "url": "https://grafana.internal/d/bitcoin-dashboard",
-      "tags": ["bitcoin", "monitoring", "grafana", "mining", "metrics"],
-      "base_score": 45,
-      "screen": "permanent"
+      "tags": ["bitcoin", "monitoring", "grafana", "mining", "metrics"]
     },
     {
       "id": "mempool_fees",
@@ -36,9 +30,7 @@
       "type": "iframe",
       "category": "external_data",
       "url": "https://mempool.space",
-      "tags": ["bitcoin", "mempool", "fees", "network"],
-      "base_score": 35,
-      "screen": "dynamic"
+      "tags": ["bitcoin", "mempool", "fees", "network"]
     },
     {
       "id": "google_calendar",
@@ -46,9 +38,7 @@
       "type": "iframe",
       "category": "planning",
       "url": "https://calendar.google.com/calendar/embed?src=...",
-      "tags": ["calendar", "planning", "schedule", "productivity"],
-      "base_score": 30,
-      "screen": "permanent"
+      "tags": ["calendar", "planning", "schedule", "productivity"]
     }
   ],
   

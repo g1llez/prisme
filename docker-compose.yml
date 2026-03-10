@@ -1,14 +1,36 @@
 # Port 3080: used by nginx-proxy to proxy to Prisme (e.g. prisme.sarius.ca)
 # Ensure no other service uses 3080: ss -tlnp | grep 3080
+# API port 8003 (standard: 8002 Seek-And-Trade, 8003 Prisme)
 #
 # data/ and pages/ are mounted: edit config.json or HTML files without rebuild.
+# API serves context via PUT/GET; Prisme nginx proxies /api to prisme-backend.
 services:
-  prisme:
+  prisme-frontend:
     build: .
+    container_name: prisme-frontend
     ports:
       - "3080:80"
     volumes:
       - ./data/config.json:/usr/share/nginx/html/config.json
       - ./data/context.json:/usr/share/nginx/html/context.json
       - ./pages:/usr/share/nginx/html/pages
+    depends_on:
+      - prisme-backend
     restart: unless-stopped
+    networks:
+      - prisme-net
+
+  prisme-backend:
+    build: ./api
+    container_name: prisme-backend
+    ports:
+      - "8003:8000"
+    volumes:
+      - ./data:/data
+    restart: unless-stopped
+    networks:
+      - prisme-net
+
+networks:
+  prisme-net:
+    driver: bridge

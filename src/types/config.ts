@@ -1,5 +1,3 @@
-export type WidgetScreen = 'permanent' | 'dynamic'
-
 export interface Widget {
   id: string
   name: string
@@ -7,8 +5,6 @@ export interface Widget {
   category: string
   url: string
   tags: string[]
-  base_score: number
-  screen: WidgetScreen
 }
 
 export interface ScoringRules {
@@ -32,8 +28,9 @@ export interface PrismeConfig {
   display_config: DisplayConfig
 }
 
-/** Conversation context (e.g. from OpenClaw) for the dynamic dashboard */
+/** Conversation context (from API, produced by agents) for the dynamic dashboard */
 export interface PrismeContext {
+  source?: string
   conversation_id?: string
   timestamp?: string
   transition_urgency?: number

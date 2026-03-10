@@ -10,8 +10,6 @@ function w(id: string, tags: string[]): Widget {
     category: 'test',
     url: '',
     tags,
-    base_score: 50,
-    screen: 'dynamic',
   }
 }
 

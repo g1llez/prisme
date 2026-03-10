@@ -45,7 +45,7 @@ function DashboardView() {
   }, [])
 
   const fetchContext = () =>
-    fetch('/context.json')
+    fetch('/api/v1/context')
       .then((res) => (res.ok ? res.json() : null))
       .then((data) => setContext(data && Array.isArray(data.tags) ? data : null))
       .catch(() => setContext(null))

@@ -11,4 +11,4 @@ cp docs/context.json.example data/context.json
 ```
 
 - **config.json**: Widget configuration (only place it’s read from). Edit then reload the page.
-- **context.json**: Context for the dynamic dashboard (`/d/dynamic`). Must contain at least `tags`. Displayed widgets are those with at least one tag in common with `context.tags`.
+- **context.json**: Context for the dynamic dashboard (`/d/dynamic`). Updated via `PUT /api/v1/context` by agents (e.g. OpenClaw). Must contain `source` (agent name) and `tags`. You can also create/edit manually for testing.

@@ -12,7 +12,7 @@ export function Widget({ widget }: WidgetProps) {
     !widget.url || widget.url.includes('...') || widget.url.includes('/document/d/...')
 
   return (
-    <article className="widget" data-screen={widget.screen}>
+    <article className="widget">
       <header className="widget__header">
         <h2 className="widget__title">{widget.name}</h2>
         <span className="widget__meta">{widget.category}</span>
